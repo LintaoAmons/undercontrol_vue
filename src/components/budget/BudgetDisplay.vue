@@ -2,32 +2,38 @@
   <div>
     <h2>Budgets</h2>
     <ul>
-      <BudgetItem v-for="budget in budgets" :budget="budget" :key="budget.id"></BudgetItem>
+      <!--      <BudgetItem v-for="budget in budgets" :budget="budget" :key="budget.id"></BudgetItem>-->
+      <!--      <li v-for="cate in budgets" >{{budget}} : {{budgets[cate]}}</li>-->
+      <li v-for="(val, key, index) in budgets" :key="index"> {{ key}} : {{ val }}</li>
     </ul>
   </div>
 </template>
 
 <script>
-import BudgetItem from "./BudgetItem";
+import axios from "axios";
 
 export default {
   name: "BudgetDisplay",
   data() {
     return {
-      budgets: [{
-        id: "1234",
-        category: "food",
-        totalAmount: "100.00",
-        remain: "99",
-      }, {
-        id: "1234",
-        category: "food",
-        totalAmount: "100.00",
-        remain: "99",
-      },]
+      budgets: {
+        "Must": 0,
+        "NiceToHave": 0,
+        "Regular": 0,
+        "Clothes": 0,
+        "LifeImprove": 0,
+        "Others": 0
+      }
     }
   },
-  components: {BudgetItem}
+  mounted() {
+    console.log(this.$store.state.token)
+    axios.get("http://localhost:8080/budget/current-month", {
+      headers: {
+        authorization: `Bearer ${this.$store.state.token}`
+      }
+    }).then(response => this.budgets = response.data)
+  }
 }
 </script>
 

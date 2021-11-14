@@ -30,7 +30,7 @@ export default {
       axios.post("http://localhost:8080/api/public/login", {
         "username": this.username,
         "password": this.password
-      }).then(response => console.log(response))
+      }).then(response => this.$store.commit("setToken", response.headers["authorization"]))
           .catch(error => console.log(error))
     }
   }
