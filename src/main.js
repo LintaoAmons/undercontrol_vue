@@ -14,9 +14,6 @@ const store = new Vuex.Store(
             token: ""
         },
         mutations: {
-            increment(state) {
-                state.count++
-            },
             setToken(state, token) {
                 state.token = token
             }

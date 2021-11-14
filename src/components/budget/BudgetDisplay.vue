@@ -4,7 +4,7 @@
     <ul>
       <!--      <BudgetItem v-for="budget in budgets" :budget="budget" :key="budget.id"></BudgetItem>-->
       <!--      <li v-for="cate in budgets" >{{budget}} : {{budgets[cate]}}</li>-->
-      <li v-for="(val, key, index) in budgets" :key="index"> {{ key}} : {{ val }}</li>
+      <li v-for="(val, key, index) in budgets" :key="index"> {{ key }} : {{ val }}</li>
     </ul>
   </div>
 </template>
@@ -27,7 +27,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$store.state.token)
     axios.get("http://localhost:8080/budget/current-month", {
       headers: {
         authorization: `Bearer ${this.$store.state.token}`

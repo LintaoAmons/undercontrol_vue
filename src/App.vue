@@ -5,6 +5,7 @@
       <router-link to="/register">Register</router-link>
       <router-link to="/login">Login</router-link>
       <router-link to="/budget">Budget</router-link>
+      <router-link to="/budget-fuel">BudgetFuel</router-link>
     </ul>
     <div class="display-area">
       <RouterView></RouterView>
